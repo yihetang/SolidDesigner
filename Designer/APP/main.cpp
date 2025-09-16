@@ -1,22 +1,23 @@
 ﻿#include <helpers/loglog.h>
 #include <log4cplus/initializer.h>
-#include "UiApplicationImpl/AliceUiApplicationProxy.h"
-#include "AliceNew.h"
-#include "AliceIApplicationProxyManager.h"
-#include "AliceTransferOwnership.h"
-#include "AliceDebugMessage.h"
+//#include "UiApplicationImpl/AliceUiApplicationProxy.h"
+//#include "AliceNew.h"
+//#include "AliceIApplicationProxyManager.h"
+//#include "AliceTransferOwnership.h"
+//#include "AliceDebugMessage.h"
 
 using namespace log4cplus::helpers;
-using namespace alice;
+//using namespace alice;
 int main(int argc, char *argv[])
 {
-    IApplicationProxyManager* pProxyMgr = IApplicationProxyManager::Get();
-    DBG_WARN_AND_RETURN_UNLESS(pProxyMgr, -1, L"pProxyMgr is null", L"hananiah", L"2023.08.27");
+    //IApplicationProxyManager* pProxyMgr = IApplicationProxyManager::Get();
+    //DBG_WARN_AND_RETURN_UNLESS(pProxyMgr, -1, L"pProxyMgr is null", L"hananiah", L"2023.08.27");
 
-    alice::IApplicationProxy* pApp = pProxyMgr->CreateApplicationProxy(argc, argv);
-    DBG_WARN_AND_RETURN_UNLESS(pApp, -1, L"pApp is null", L"hananiah", L"2023.08.27");
-    int nResult = pApp->Execute();
-    return nResult;
+    //alice::IApplicationProxy* pApp = pProxyMgr->CreateApplicationProxy(argc, argv);
+    //DBG_WARN_AND_RETURN_UNLESS(pApp, -1, L"pApp is null", L"hananiah", L"2023.08.27");
+    //int nResult = pApp->Execute();
+    //return nResult;
+
     return 0;
 }
 
