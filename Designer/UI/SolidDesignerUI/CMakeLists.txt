@@ -11,9 +11,9 @@ add_definitions(-DALICE_BASIC_SERVICE_HOME)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.15.14/5.15.14/msvc2019_64")
-find_package(Qt5Core       5.13 REQUIRED)
-find_package(Qt5Gui        5.13 REQUIRED)
-find_package(Qt5Widgets    5.13 REQUIRED)
+find_package(Qt5Core       5.15 REQUIRED)
+find_package(Qt5Gui        5.15 REQUIRED)
+find_package(Qt5Widgets    5.15 REQUIRED)
 
 
 message("${PROJECT_SOURCE_DIR}")
