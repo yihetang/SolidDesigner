@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     //return nResult;
     OwningPtr<IAppLauncher> opLauncher = IAppLauncher::Create();
     DIAG_RETURN_IF_FALSE(opLauncher, 0, "", "hananiah", "2025.11.1");
-
+    opLauncher->Run(argc, argv);
     return 0;
 }
 
