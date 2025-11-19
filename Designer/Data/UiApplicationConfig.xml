@@ -6,8 +6,6 @@
   <Include href="TitleBarConfig.xml"/>
   <!-- toolbar config file -->
   <Include href="ToolBarConfig.xml"/>
-  <!-- commands config file -->
-  <Include href="CommandsConfig.xml"/>
   
   <Theme darkMode="true">
     <Palette base="#121212" text="#E0E0E0" accent="#FF9E00"/>
