@@ -16,7 +16,13 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: recursive
-
+        
+    - name: Ensure submodules are initialized
+      run: |
+        git submodule sync --recursive
+        git submodule update --init --recursive --depth 1
+        git submodule status
+        
     - name: Configure with CMake (headless)
       run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSD_BUILD_DESIGNER=OFF -DSD_BUILD_DEMOS=OFF
 
