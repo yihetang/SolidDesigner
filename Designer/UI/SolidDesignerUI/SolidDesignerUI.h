@@ -2,12 +2,16 @@
 // 此头文件包含DLL导出的宏
 #include "AliceMacroDefinitions.h"
 #include <iostream>
+
+#if defined(_WIN32)
 #ifdef ALICE_UI_ROBOT_HOME
 #define ALICE_UI_ROBOT_EXPORT DLL_EXPORT
 #else
 #define ALICE_UI_ROBOT_EXPORT DLL_IMPORT
 #endif
-
+#else
+#define ALICE_UI_ROBOT_EXPORT __attribute__((visibility("default")))
+#endif
 
 namespace
 {

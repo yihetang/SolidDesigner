@@ -149,7 +149,7 @@ set_target_properties(SolidDesignerCommandsId PROPERTIES FOLDER "Designer/UI")
 # 链接第三方的库
 # @1、链接的动作需要放到add_library之后
 #-----------------------------------------------------------------------------
-target_link_libraries(SolidDesignerCommand
+target_link_libraries(SolidDesignerCommand PRIVATE
     AliceFoundation
     AliceBasicTool
     AliceCommandInterface

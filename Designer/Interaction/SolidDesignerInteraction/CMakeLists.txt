@@ -99,7 +99,7 @@ endif()
 # @1、链接的动作需要放到add_library之后
 #-----------------------------------------------------------------------------
 
-target_link_libraries(SolidDesignerInteraction
+target_link_libraries(SolidDesignerInteraction PRIVATE
     AliceBasicTool
 )
 

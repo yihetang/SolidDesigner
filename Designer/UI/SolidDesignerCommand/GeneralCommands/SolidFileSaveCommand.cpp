@@ -1,4 +1,4 @@
-#include "SolidFileSaveCommand.h"
+ï»¿#include "SolidFileSaveCommand.h"
 
 #include "AliceIMainWindow.h"
 #include "AliceIDocumentManager.h"
@@ -66,7 +66,7 @@ std::unique_ptr<IOperation> SolidFileSaveCommand::Execute(const CommandParameter
 	bool         isSaveAs = false;
 
 	if (hasFilePath_(*doc)) {
-		// ÒÑÓĞÂ·¾¶£ºÖ±½Ó±£´æ
+		// å·²æœ‰è·¯å¾„ï¼šç›´æ¥ä¿å­˜
 		path = getFilePath_(*doc);
 		isSaveAs = false;
 	}
@@ -84,7 +84,7 @@ std::unique_ptr<IOperation> SolidFileSaveCommand::Execute(const CommandParameter
 
 	}
 
-	// ±£´æÎÄ¼şÍ¨³£²»½ø Undo/Redo
+	// ä¿å­˜æ–‡ä»¶é€šå¸¸ä¸è¿› Undo/Redo
 	return nullptr;
 }
 
@@ -143,7 +143,7 @@ bool SolidFileSaveCommand::saveDocument_(IDocument& doc, const std::wstring& pat
 
 	//if (isSaveAs)
 	//{
-	//	return m_docManager->SaveAs(doc, path);   // TODO: ¶ÔÆëÄãµÄ API
+	//	return m_docManager->SaveAs(doc, path);   // TODO: å¯¹é½ä½ çš„ API
 	//}
 	//else 
 	//{

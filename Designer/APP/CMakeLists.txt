@@ -113,21 +113,6 @@ link_directories(${CMAKE_BINARY_DIR}/x64/${CMAKE_BUILD_TYPE})
 
 
 #-----------------------------------------------------------------------------
-# 库文件链接路径<add_executable之前>
-# link_libraries 不会为每个目标生成链接路径。而是直接添加库的名称。
-#-----------------------------------------------------------------------------
-message("PROJECT_NAME = ${PROJECT_NAME}")
-link_libraries(glu32.lib)
-link_libraries(glew32.lib)
-link_libraries(opengl32.lib)
-link_libraries(freeimage.lib)
-link_libraries(log4cplusU.lib)
-link_libraries(AliceCoreApplicationInterface.lib)
-link_libraries(AliceUiFrameWork.lib)
-link_libraries(AliceBasicTool.lib)
-link_libraries(AliceComponentSystem.lib)
-link_libraries(AliceLaunchInterface.lib)
-#-----------------------------------------------------------------------------
 # QRC文件打包及前处理命令
 #-----------------------------------------------------------------------------
 set(GEN_RCC_BAT   "${CMAKE_SOURCE_DIR}/Designer/UIResource/GenerateRcc.bat")
@@ -137,10 +122,6 @@ set(SD_RCC_FILE   "${SD_RCC_DIR}/SolidDesignerRes.rcc")
 
 # 收集所有 .qrc（改变时触发重建）
 file(GLOB_RECURSE SD_QRCS "${GEN_RCC_WD}/*.qrc")
-
-
-
-
 
 
 #-----------------------------------------------------------------------------
@@ -218,6 +199,26 @@ install(DIRECTORY "${CMAKE_SOURCE_DIR}/source/resource/Script" DESTINATION "${IN
 # elseif(SOLIDRENDER_LINUX)  
     # install(DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}"  DESTINATION "${INSTALL_DIR}/INSTALL")
 # endif()
+
+
+#-----------------------------------------------------------------------------
+# 链接第三方的库
+# @1、链接的动作需要放到add_library之后
+#-----------------------------------------------------------------------------
+message("PROJECT_NAME = ${PROJECT_NAME}")
+target_link_libraries(${PROJECT_NAME}
+    glu32
+    glew32
+    opengl32
+    freeimage
+    log4cplusU
+    AliceCoreApplicationInterface
+    AliceUiFrameWork
+    AliceBasicTool
+    AliceComponentSystem
+    AliceLaunchInterface
+)
+
 
 
 message(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>End Designer APP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")

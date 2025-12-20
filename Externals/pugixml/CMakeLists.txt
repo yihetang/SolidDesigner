@@ -6,7 +6,9 @@
 message("=====================================Start pugixml=======================================")
 message("${PROJECT_SOURCE_DIR}")
 
-add_definitions(-D_WINDOWS)
+if(WIN32)
+  add_definitions(-D_WINDOWS)
+endif()
 
 FILE(GLOB SOURCE_CPP_FILES "${PROJECT_SOURCE_DIR}/Externals/pugixml/*.cpp")
 FILE(GLOB HEADER_H_FILES   "${PROJECT_SOURCE_DIR}/Externals/pugixml/*.hpp")

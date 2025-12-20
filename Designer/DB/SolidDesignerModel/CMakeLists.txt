@@ -97,7 +97,7 @@ endif()
 # 链接第三方的库
 # @1、链接的动作需要放到add_library之后
 #-----------------------------------------------------------------------------
-target_link_libraries(SolidDesignerModel 
+target_link_libraries(SolidDesignerModel PRIVATE
     AliceBasicTool
     AliceFoundation
 	AliceDatabaseInterface
