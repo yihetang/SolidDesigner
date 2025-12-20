@@ -5,9 +5,6 @@
 ##########################################################################################################
 message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDesigner UI--*--*--*--*--*--*--*--*--*--*--**--*--*--*")
 
-add_definitions(-DSOLID_DESIGNER_UI_HOME)
-add_definitions(-DALICE_BASIC_SERVICE_HOME)
-
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.15.14/5.15.14/msvc2019_64")
@@ -49,6 +46,11 @@ add_library(SolidDesignerUI SHARED ${SOURCE_FILES} ${HEADER_FILES})
 set_target_properties(SolidDesignerUI PROPERTIES FOLDER "Designer/UI")
 #=============================================================================
 
+# 目标级编译宏（代替全局 add_definitions）
+target_compile_definitions(SolidDesignerUI
+    PRIVATE
+        SOLID_DESIGNER_UI_HOME
+)
 
 #-----------------------------------------------------------------------------
 # 根据系统及机器位数设置链接的位数

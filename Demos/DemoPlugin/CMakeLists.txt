@@ -5,9 +5,6 @@
 ##########################################################################################################
 message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDemoPlugin--*--*--*--*--*--*--*--*--*--*--**--*--*--*")
 
-add_definitions(-DSOLID_DESIGNER_UI_HOME)
-add_definitions(-DALICE_DEMO_PLUGIN_HOME)
-
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.15.14/5.15.14/msvc2019_64")
@@ -92,6 +89,12 @@ add_library(SolidDemoPlugin SHARED ${SDP_FILES})
 #设定工程的过滤器
 set_target_properties(SolidDemoPlugin PROPERTIES FOLDER "Demos")
 #=============================================================================
+
+# 目标级编译宏（代替全局 add_definitions）
+target_compile_definitions(SolidDemoPlugin
+    PRIVATE
+        ALICE_DEMO_PLUGIN_HOME
+)
 
 
 #-----------------------------------------------------------------------------

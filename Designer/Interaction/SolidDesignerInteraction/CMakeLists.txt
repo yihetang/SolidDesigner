@@ -5,12 +5,7 @@
 ##########################################################################################################
 message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDesignerInteraction--*--*--*--*--*--*--*--*--*--*--**--*--*--*")
 
-add_definitions(-DSOLID_DESIGNER_INTERACTION_HOME)
-add_definitions(-DALICE_BASIC_SERVICE_HOME)
-
 message("${PROJECT_SOURCE_DIR}")
-
-
 FILE(GLOB SOURCE_FILES "${PROJECT_SOURCE_DIR}/Designer/Interaction/SolidDesignerInteraction/*.cpp")
 FILE(GLOB HEADER_FILES "${PROJECT_SOURCE_DIR}/Designer/Interaction/SolidDesignerInteraction/*.h")
 
@@ -36,6 +31,11 @@ add_library(SolidDesignerInteraction SHARED ${SOURCE_FILES} ${HEADER_FILES})
 set_target_properties(SolidDesignerInteraction PROPERTIES FOLDER "Designer/Interaction")
 #=============================================================================
 
+# 目标级编译宏（代替全局 add_definitions）
+target_compile_definitions(SolidDesignerInteraction
+    PRIVATE
+        SOLID_DESIGNER_INTERACTION_HOME
+)
 
 
 #-----------------------------------------------------------------------------

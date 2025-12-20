@@ -5,13 +5,7 @@
 ##########################################################################################################
 message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDesignerModel--*--*--*--*--*--*--*--*--*--*--**--*--*--*")
 
-add_definitions(-DSOLID_DESIGNER_MODEL_HOME)
-add_definitions(-DALICE_BASIC_SERVICE_HOME)
-
-
 message("${PROJECT_SOURCE_DIR}")
-
-
 FILE(GLOB SOURCE_FILES "${PROJECT_SOURCE_DIR}/Designer/DB/SolidDesignerModel/*.cpp")
 FILE(GLOB HEADER_FILES "${PROJECT_SOURCE_DIR}/Designer/DB/SolidDesignerModel/*.h")
 
@@ -37,6 +31,12 @@ add_library(SolidDesignerModel SHARED ${SOURCE_FILES} ${HEADER_FILES})
 set_target_properties(SolidDesignerModel PROPERTIES FOLDER "Designer/DB")
 #=============================================================================
 
+
+# 目标级编译宏（代替全局 add_definitions）
+target_compile_definitions(SolidDesignerModel
+    PRIVATE
+        SOLID_DESIGNER_MODEL_HOME
+)
 
 #-----------------------------------------------------------------------------
 # 根据系统及机器位数设置链接的位数

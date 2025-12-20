@@ -9,8 +9,7 @@ message(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Designer app Directory<<<<<<<<<
 message("CMAKE_SOURCE_DIR == ")
 message("${CMAKE_SOURCE_DIR}")
 message("${CMAKE_CURRENT_SOURCE_DIR}")
-add_definitions(-D_USRDLL)
-add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+
 # 批量添加程序文件，包括源文件 头文件 资源文件等
 # 注意路径是当前目录，不然的话文件无法正确添加到VS中
 FILE(GLOB APP_FILES "${PROJECT_SOURCE_DIR}/Designer/APP/*.cpp" "${PROJECT_SOURCE_DIR}/Designer/APP/*.h")
@@ -137,6 +136,15 @@ add_executable(${PROJECT_NAME}
  ${HEADER_H_FILES}
  ${HEADER_HPP_FILES}
  ${APP_FILES})
+
+
+# 目标级编译宏（代替全局 add_definitions）
+target_compile_definitions(${PROJECT_NAME}
+    PRIVATE
+        _USRDLL
+        _CRT_SECURE_NO_WARNINGS
+)
+
 
  # 定义：如何生成 .rcc
 add_custom_command(OUTPUT "${SD_RCC_FILE}"

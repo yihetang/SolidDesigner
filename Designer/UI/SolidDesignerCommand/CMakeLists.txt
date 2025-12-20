@@ -4,10 +4,6 @@
 #--Author:  hananiah
 ##########################################################################################################
 message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDesignerCommand--*--*--*--*--*--*--*--*--*--*--**--*--*--*")
-
-add_definitions(-DSOLID_DESIGNER_UI_HOME)
-add_definitions(-DSOLID_DESIGNER_COMMAND_HOME)
-
 message("CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 # 先指定你项目内置的 Python 解释器
 set(_SD_PY_ROOT "${CMAKE_SOURCE_DIR}/ToolChain/Python310")
@@ -56,6 +52,12 @@ add_library(SolidDesignerCommand SHARED ${SDC_FILES})
 #设定工程的过滤器
 set_target_properties(SolidDesignerCommand PROPERTIES FOLDER "Designer/UI")
 #=============================================================================
+
+# 目标级编译宏（代替全局 add_definitions）
+target_compile_definitions(SolidDesignerCommand
+    PRIVATE
+        SOLID_DESIGNER_COMMAND_HOME
+)
 
 
 #-----------------------------------------------------------------------------
