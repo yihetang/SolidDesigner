@@ -1,8 +1,8 @@
 [submodule "Alice"]
 	path = Alice
-	url = git@github.com:hananiahhsu/Alice.git
+	url = https://github.com/hananiahhsu/Alice.git
 	branch = main
 [submodule "ToolChain"]
-	url = git@github.com:ToshihideMaskawa/ToolChain.git
+	url = https://github.com/ToshihideMaskawa/ToolChain.git
 	path = ToolChain
 	branch = main
