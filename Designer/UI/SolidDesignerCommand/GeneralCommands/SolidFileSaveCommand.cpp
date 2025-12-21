@@ -94,7 +94,7 @@ IDocument* SolidFileSaveCommand::getActiveDocument_() const
 	//	return nullptr;
 
 	//return m_docManager->GetActiveDocument(); 
-	return false;
+	return nullptr;
 }
 
 bool SolidFileSaveCommand::hasFilePath_(IDocument& doc) const
