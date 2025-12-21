@@ -61,24 +61,25 @@ find_package(Qt5 COMPONENTS Core Gui Widgets Network Quick Qml REQUIRED)
 
 
 # QT5头文件路径
-message("----------------qt5 files include directory--------------------")
-include_directories(${QTDIR}/include)
-include_directories(${QTDIR}/include/QtWidgets)
-include_directories(${QTDIR}/include/QtCore)
-include_directories(${QTDIR}/include/QtGui)
-include_directories(${QTDIR}/include/QtOpenGL)
-include_directories(${QTDIR}/include/QtMultimedia)
-include_directories(${QTDIR}/include/QtQuick)
-include_directories(${QTDIR}/include/QtQml)
-include_directories(${QTDIR}/include/QtNetwork)
-include_directories(${QTDIR}/mkspecs/win32-msvc2012)
+if(WIN32)
+    message("----------------qt5 files include directory--------------------")
+    include_directories(${QTDIR}/include)
+    include_directories(${QTDIR}/include/QtWidgets)
+    include_directories(${QTDIR}/include/QtCore)
+    include_directories(${QTDIR}/include/QtGui)
+    include_directories(${QTDIR}/include/QtOpenGL)
+    include_directories(${QTDIR}/include/QtMultimedia)
+    include_directories(${QTDIR}/include/QtQuick)
+    include_directories(${QTDIR}/include/QtQml)
+    include_directories(${QTDIR}/include/QtNetwork)
+    include_directories(${QTDIR}/mkspecs/win32-msvc2012)
 
-#-----------------------------------------------------------------------------
-# 添加需要链接的库文件目录LINK_DIRECTORIES
-# 例如QT库
-#-----------------------------------------------------------------------------
-link_directories(${QTDIR}/lib)
-
+    #-----------------------------------------------------------------------------
+    # 添加需要链接的库文件目录LINK_DIRECTORIES
+    # 例如QT库
+    #-----------------------------------------------------------------------------
+    link_directories(${QTDIR}/lib)
+endif()
 
 #-----------------------------------------------------------------------------
 #---------------------------第三方库的头文件和二进制文件----------------------
@@ -149,8 +150,8 @@ target_compile_definitions(${PROJECT_NAME}
 )
 
 
- # 定义：如何生成 .rcc
- if(WIN32)
+# 定义：如何生成 .rcc
+if(WIN32)
 add_custom_command(OUTPUT "${SD_RCC_FILE}"
   COMMAND ${CMAKE_COMMAND} -E make_directory "${SD_RCC_DIR}"
   COMMAND ${CMAKE_COMMAND} -E echo ">>> GenerateRCC: ${GEN_RCC_BAT} -> ${SD_RCC_FILE}"
@@ -167,7 +168,6 @@ else()
     message(FATAL_ERROR "Qt rcc not found. Ensure Qt is installed and rcc is in PATH.")
   endif()
 
-  # 强烈建议你指定“主 qrc”，不要靠 glob 随机挑一个
   set(SD_MAIN_QRC "${GEN_RCC_WD}/SolidDesignerRes.qrc") 
   if(NOT EXISTS "${SD_MAIN_QRC}")
     message(FATAL_ERROR "Main qrc not found: ${SD_MAIN_QRC}. Please set SD_MAIN_QRC explicitly.")
@@ -241,19 +241,30 @@ install(DIRECTORY "${CMAKE_SOURCE_DIR}/source/resource/Script" DESTINATION "${IN
 # @1、链接的动作需要放到add_library之后
 #-----------------------------------------------------------------------------
 message("PROJECT_NAME = ${PROJECT_NAME}")
-target_link_libraries(${PROJECT_NAME}
-    glu32
-    glew32
-    opengl32
-    freeimage
-    log4cplusU
-    AliceCoreApplicationInterface
-    AliceUiFrameWork
-    AliceBasicTool
-    AliceComponentSystem
-    AliceLaunchInterface
-)
-
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME}
+        glu32
+        glew32
+        opengl32
+        freeimage
+        log4cplusU
+        AliceCoreApplicationInterface
+        AliceUiFrameWork
+        AliceBasicTool
+        AliceComponentSystem
+        AliceLaunchInterface
+    )
+else()
+    target_link_libraries(${PROJECT_NAME}
+        OpenGL::GL 
+        OpenGL::GLU
+        AliceCoreApplicationInterface
+        AliceUiFrameWork
+        AliceBasicTool
+        AliceComponentSystem
+        AliceLaunchInterface
+    )
+endif()
 
 
 message(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>End Designer APP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
