@@ -36,6 +36,7 @@ jobs:
           libqt5svg5-dev\
           qtdeclarative5-dev \
           qtquickcontrols2-5-dev\
+          python3 \
           uuid-dev
 
 
